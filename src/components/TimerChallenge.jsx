@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import ResultModal from "./ResultModal.jsx";
 
 export default function TimerChallenge({ title, targetTime }) {
     const [timerStarted, setTimerStarted] = useState(false);
@@ -7,11 +8,15 @@ export default function TimerChallenge({ title, targetTime }) {
 
     function handelStart() {
         setTimerExpired(false);
+        setTimerStarted(true);
+        if (timer.current) {
+            clearTimeout(timer.current);
+        }
         timer.current = setTimeout(() => {
             setTimerExpired(true);
             setTimerStarted(false);
+            timer.current = null;
         }, targetTime * 1000);
-            {timerExpired && <p className="challenge-expired">You lost!</p>}
     }
 
     function handelStop() {
@@ -24,26 +29,31 @@ export default function TimerChallenge({ title, targetTime }) {
 
     useEffect(() => {
         return () => {
-            if (timer.current) clearTimeout(timer.current);
+            if (timer.current) {
+                clearTimeout(timer.current);
+                timer.current = null;
+            }
         };
     }, []);
 
     return (
-        <section className="challenge">
-            <h2>{title}</h2>
-            {timerExpired && <p>you lost!</p>}
-            <p className="challenge-time">
-                Target Time: {targetTime} second{targetTime > 1 ? 's' : ''}
-            </p>
-            <p>
-                <button onClick={timerStarted ? handelStop : handelStart}>
-                    {timerStarted ? 'Stop' : 'Start'} Challenge
-                </button>
-            </p>
-            <p className={timerStarted ? 'active' : undefined}>
-                {timerStarted ? 'Timer is running...' : 'Timer is not started'}
-            </p>
-
-        </section>
+        <>
+            {timerExpired && <ResultModal targetTime={targetTime} result="lost" onClose={() => setTimerExpired(false)} />}
+            <section className="challenge">
+                <h2>{title}</h2>
+                {timerExpired && <p className="challenge-expired">You lost!</p>}
+                <p className="challenge-time">
+                    Target Time: {targetTime} second{targetTime > 1 ? 's' : ''}
+                </p>
+                <p>
+                    <button onClick={timerStarted ? handelStop : handelStart}>
+                        {timerStarted ? 'Stop' : 'Start'} Challenge
+                    </button>
+                </p>
+                <p className={timerStarted ? 'active' : undefined}>
+                    {timerStarted ? 'Timer is running...' : 'Timer is not started'}
+                </p>
+            </section>
+        </>
     );
 }

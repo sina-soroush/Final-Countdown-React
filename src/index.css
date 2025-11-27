@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Handjet:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@600;700&display=swap');
 
 :root {
   --primary: #6a8cff;
@@ -13,7 +13,7 @@
 
 * { box-sizing: border-box; }
 
-/* Flat design: solid colors, minimal shadows, no gradients or blur */
+
 body {
   margin: 0;
   font-family: 'Quicksand', sans-serif;
@@ -24,7 +24,7 @@ body {
   min-height: 100vh;
 }
 
-/* Containers */
+
 #content {
   max-width: 60rem;
   margin: 2rem auto;
@@ -67,7 +67,7 @@ header p { text-align:center; color: rgba(225,238,235,0.9); margin: 0 0 1rem 0; 
   outline: none;
 }
 
-/* Player */
+
 #player {
   text-align: center;
   padding: 1.5rem;
@@ -79,7 +79,7 @@ header p { text-align:center; color: rgba(225,238,235,0.9); margin: 0 0 1rem 0; 
 
 #player h2 { color: var(--accent); font-size: 1.25rem; margin: 0 0 .5rem 0; }
 
-/* Flat buttons (consistent) */
+
 button {
   font: inherit;
   cursor: pointer;
@@ -94,7 +94,7 @@ button:hover { background-color: #5876e6; transform: translateY(-1px); }
 
 #player button { width: 100%; }
 
-/* Challenges */
+
 #challenges { max-width: 50rem; margin: 2rem auto; display:flex; flex-wrap:wrap; gap:1rem; justify-content:center; }
 .challenge {
   width: 22rem;
@@ -111,7 +111,6 @@ button:hover { background-color: #5876e6; transform: translateY(-1px); }
 
 .challenge button { margin-top: 0.75rem; }
 
-/* Minimal modal */
 .result-modal {
   border: none;
   border-radius: 12px;
@@ -127,10 +126,10 @@ button:hover { background-color: #5876e6; transform: translateY(-1px); }
 
 .result-modal button { background-color: var(--primary); color: #fff; }
 
-/* Utility tweaks */
+
 .challenge .active { outline: 2px solid rgba(0,255,213,0.14); }
 
-/* Remove all decorative animations and heavy shadows to keep flat look */
+
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Handjet:wght@400;700&display=swap');
 
 :root {
@@ -560,6 +559,19 @@ header p {
     opacity: 1;
   }
 }
+/* Font overrides: use Inter for body text and Poppins for headings */
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Poppins', 'Handjet', sans-serif;
+  font-weight: 600;
+}
+
+.result-modal h2 {
+  font-family: 'Poppins', 'Handjet', sans-serif;
+}
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&family=Handjet:wght@400;700&display=swap');
 
 :root {
@@ -926,6 +938,24 @@ header p {
   backdrop-filter: blur(10px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
   border: 2px solid var(--glass-border);
+}
+
+/* Fullscreen overlay for modals so they appear as pop-over messages */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(4, 8, 16, 0.6);
+  z-index: 1200;
+  padding: 1.5rem;
+}
+
+.modal-overlay .result-modal {
+  max-width: 36rem;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .result-modal[open] {
