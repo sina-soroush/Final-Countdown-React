@@ -6,6 +6,9 @@ A fun and interactive React-based timer challenge game where players must stop t
 ![Vite](https://img.shields.io/badge/Vite-4.4.5-646CFF?logo=vite)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
+## 📸 Preview
+<img width="1593" height="1816" alt="Final-Countdown-React" src="https://github.com/user-attachments/assets/7ae6edb4-b426-4131-b107-13bbfda7cdb6" />
+
 ## 📋 Table of Contents
 
 - [Features](#features)
