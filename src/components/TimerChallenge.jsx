@@ -5,18 +5,14 @@ export default function TimerChallenge({ title, targetTime }) {
     const [timerStarted, setTimerStarted] = useState(false);
     const [timerExpired, setTimerExpired] = useState(false);
     const timer = useRef(null);
+    const dialog = useRef(null);
 
     function handelStart() {
-        setTimerExpired(false);
-        setTimerStarted(true);
-        if (timer.current) {
-            clearTimeout(timer.current);
-        }
         timer.current = setTimeout(() => {
             setTimerExpired(true);
-            setTimerStarted(false);
-            timer.current = null;
+            dialog.current.showModal();
         }, targetTime * 1000);
+        setTimerStarted(true);
     }
 
     function handelStop() {
@@ -38,20 +34,20 @@ export default function TimerChallenge({ title, targetTime }) {
 
     return (
         <>
-            {timerExpired && <ResultModal targetTime={targetTime} result="lost" onClose={() => setTimerExpired(false)} />}
+            <ResultModal ref={dialog} targetTime={targetTime} result="lost" />
             <section className="challenge">
                 <h2>{title}</h2>
                 {timerExpired && <p className="challenge-expired">You lost!</p>}
                 <p className="challenge-time">
-                    Target Time: {targetTime} second{targetTime > 1 ? 's' : ''}
+                    Target Time: {targetTime} second{targetTime > 1 ? "s" : ""}
                 </p>
                 <p>
                     <button onClick={timerStarted ? handelStop : handelStart}>
-                        {timerStarted ? 'Stop' : 'Start'} Challenge
+                        {timerStarted ? "Stop" : "Start"} Challenge
                     </button>
                 </p>
-                <p className={timerStarted ? 'active' : undefined}>
-                    {timerStarted ? 'Timer is running...' : 'Timer is not started'}
+                <p className={timerStarted ? "active" : undefined}>
+                    {timerStarted ? "Timer is running..." : "Timer is not started"}
                 </p>
             </section>
         </>
