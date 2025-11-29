@@ -7,6 +7,9 @@ A fun and interactive React-based timer challenge game where players must stop t
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 ## 📸 Preview
+
+You can view the live version of this project here:  
+👉 [final-countdown-react.netlify.app](https://final-countdown-react.netlify.app/)
 <img width="1593" height="1816" alt="Final-Countdown-React" src="https://github.com/user-attachments/assets/7ae6edb4-b426-4131-b107-13bbfda7cdb6" />
 
 ## 📋 Table of Contents
